@@ -1,3 +1,4 @@
+"use client";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@heroui/react";
 
 export const AcmeLogo = () => {
