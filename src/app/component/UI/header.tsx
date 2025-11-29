@@ -1,5 +1,8 @@
 "use client";
+import LoginModal from "./modals/login.modal";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@heroui/react";
+import RegistrationModal from "./modals/registration.modal";
+import {useState} from "react";
 
 export const AcmeLogo = () => {
   return (
@@ -14,7 +17,12 @@ export const AcmeLogo = () => {
   );
 };
 
+
 export default function App() {
+
+  const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+
   return (
     <Navbar>
       <NavbarBrand>
@@ -24,30 +32,35 @@ export default function App() {
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>
           <Link color="foreground" href="#">
-            Features
+            Главная
           </Link>
         </NavbarItem>
         <NavbarItem isActive>
           <Link aria-current="page" href="#">
-            Customers
+            Документация
           </Link>
         </NavbarItem>
         <NavbarItem>
           <Link color="foreground" href="#">
-            Integrations
+            О нас
           </Link>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
+          <Button as={Link} onPress= {()=> setIsLoginOpen(true)} color="primary" href="#" variant="flat">
+            Войти
+          </Button>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
-            Sign Up
+          <Button as={Link} onPress= {()=> setIsRegistrationOpen(true)} color="primary" href="#" variant="flat">
+            Зарегистрироваться
           </Button>
         </NavbarItem>
       </NavbarContent>
+
+      <RegistrationModal isOpen={isRegistrationOpen} onClose={() => setIsRegistrationOpen(false)} />
+      <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
     </Navbar>
   );
 }
