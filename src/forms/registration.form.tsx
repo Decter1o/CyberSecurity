@@ -1,5 +1,6 @@
 import {Form, Input, Button} from "@heroui/react";
 import {useState} from "react";
+import {registerUser} from "@/actions/register";
 
 interface IProps {
     onClose: () => void;
@@ -21,6 +22,8 @@ const RegistrationForm = ({onClose}: IProps) => {
         e.preventDefault();
         console.log("set formdata:", formData);
         onClose();
+
+        const result = await registerUser(formData);
     }
 
     return (
