@@ -74,7 +74,7 @@ export default function Header() {
           </Button>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color = "secondary" href ="#" variant="flat" onPress={handleSignOut}>
+          <Button as={Link} className="btn-white" href="#" variant="flat" onPress={handleSignOut}>
             Выйти
           </Button>
         </NavbarItem>
