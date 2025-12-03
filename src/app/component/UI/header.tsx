@@ -3,6 +3,8 @@ import LoginModal from "./modals/login.modal";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@heroui/react";
 import RegistrationModal from "./modals/registration.modal";
 import {useState} from "react";
+import { sign } from "crypto";
+import { signOutFunc } from "@/actions/sign-out";
 
 export const AcmeLogo = () => {
   return (
@@ -27,6 +29,14 @@ export const AcmeLogo = () => {
 
 export default function Header() {
 
+  const handleSignOut = async () => {
+    try {
+      await signOutFunc();
+    }
+    catch (error) {
+      console.error("Error", error);
+    }
+  };
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
 
@@ -61,6 +71,11 @@ export default function Header() {
         <NavbarItem>
           <Button as={Link} onPress={() => setIsRegistrationOpen(true)} className="btn-white" href="#" variant="flat">
             Зарегистрироваться
+          </Button>
+        </NavbarItem>
+        <NavbarItem>
+          <Button as={Link} color = "secondary" href ="#" variant="flat" onPress={handleSignOut}>
+            Выйти
           </Button>
         </NavbarItem>
       </NavbarContent>

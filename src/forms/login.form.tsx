@@ -1,3 +1,4 @@
+import { signInWithCredentials } from "@/actions/sign-in";
 import {Form, Input, Button} from "@heroui/react";
 import {useState} from "react";
 
@@ -19,6 +20,7 @@ const LoginForm = ({onClose}: IProps) => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        const result = await signInWithCredentials(formData.email, formData.password);
         console.log("set formdata:", formData);
         onClose();
     }
